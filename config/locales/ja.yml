@@ -1,0 +1,73 @@
+---
+ja:
+  you_can't_destroy_or_edit_other_user's_posting: 他のユーザーの情報を編集削除はできません。
+  Are_you_sure?: 本当に削除しますか？
+  you_can't_enter_other_tokeroom: 他のユーザー同士のトークルームには入れません。
+  activerecord:
+    errors:
+      messages:
+        s_errors: 件のエラーがあります。
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+        file_type_m4a: mp3形式でアップロードをしてください。
+  views:
+    top_description: 最高の出会いと最高の音楽体験を
+    public:
+      go_to_the_index: 投稿を見てみる
+      posting_succeeded: 投稿されました。
+      editting_failed: 編集に失敗しました。
+      posting_failed: 投稿できませんでした。
+      posting_destroyed: 投稿が削除されました。
+      now_editting: 編集中
+      editting_succeeded: 編集されました。
+      log_out: ログアウト
+      log_in: ログイン
+      keyword: キーワード
+      search: 検索
+      delete_user: アカウント削除
+      not_come_up: ヒットしませんでした。
+    post:
+      new: 新規投稿
+      edit: 編集
+      index: 投稿一覧
+      show: 詳細
+      destroy: 削除
+    user:
+      show: プロフィール
+      edit: プロフィール編集
+      new: 新規登録
+      my_page: マイページ
+      following: フォロー中
+      followers: フォロワー
+      favorite_posts: お気に入り
+      past_posts: 過去の投稿
+      friends_with_this_person: と友達のユーザー
+      following_user: がフォローしているユーザー
+      folloed_by_user: をフォローしているユーザー
+      s_favorite_posts: のお気に入り
+      leave_blank_if_you_don't_want_to_change_it: 更新する場合パスワードを入力してください。
+    conversation:
+      message_index: メッセージ一覧
+    dm_message:
+      past_messages: 以前のメッセージ
+      read: 既読
+      not_to_read: 未読
+    notification:
+      nothing_to_notify: 通知はありません。
+      delete_all: 全削除
+      notifications: 通知
+      sir: さんが
+      followed_you: あなたをフォローしました。
+      your_post: あなたの投稿
+      liked: にいいねしました。
+      s_post: さんの投稿
+      commented: にコメントしました。
+      messaged: を送りました。
+  controller:
+    public:
+      please_fill_in_the_the_comment: コメントが空、またはmp3以外の拡張子を入力しています。
+      the_post_added: 投稿が追加されました。
+      the_post_updated: 投稿が更新されました。
+      the_post_deleted: 投稿を削除しました。
