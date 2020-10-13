@@ -1,0 +1,30 @@
+<%= link_to '一覧に戻る', questions_path, class:"btn btn-primary" %>
+<br><br>
+
+<%= form_with(model: @question, local: true) do |form| %>
+
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> バリデーションエラーが発生しています</h2>
+      <ul>
+      <% @question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title ,class:"form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :content %>
+    <%= form.text_area :content ,class:"form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "決定",class:"btn btn-success"%>
+  </div>
+<% end %>

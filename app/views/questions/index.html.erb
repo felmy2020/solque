@@ -1,0 +1,11 @@
+
+<h1><%= t('views.question.index')%></h1>
+
+<br>
+<%= link_to '新規登録' ,new_question_path, class:"btn btn-primary" %>
+<% @questions.each do |question| %>
+  <%= question.title %>
+  <%= question.content %>
+  <%= link_to '編集', edit_question_path(question), class:"btn btn-success" %>
+  <%= link_to '削除', question, method: :delete, data: { confirm: t('Are_you_sure?')  } ,class:"btn btn-danger"%>
+<% end %>
