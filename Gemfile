@@ -17,7 +17,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails-i18n', '~> 5.1'
 gem 'slim-rails'
 
-
+gem 'redcarpet', '~> 2.3.0'
+gem 'coderay'
 
 group :development, :test do
     gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
