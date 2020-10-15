@@ -1,8 +1,15 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
+  def search
+    params[:q]['content_cont_all'] = params[:q]['content_cont_all'].split(/[\p{blank}\s]+/)
+    @q = Question.ransack(params[:q])
+    @questions = @q.result(distinct: true)
+  end
+
   def index
-    @questions = Question.all
+    @q = Question.ransack(params[:q])
+    @questions = @q.result(distinct: true)
   end
 
   def show
@@ -46,5 +53,9 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:title, :content, :status)
   end
+
+  # def search_params
+  #   params.require(:q).permit!
+  # end
 
 end

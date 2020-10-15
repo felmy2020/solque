@@ -20,6 +20,9 @@ gem 'slim-rails'
 gem 'redcarpet', '~> 2.3.0'
 gem 'coderay'
 
+gem 'ransack'
+
+
 group :development, :test do
     gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
