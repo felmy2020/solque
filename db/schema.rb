@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_14_091601) do
+ActiveRecord::Schema.define(version: 2020_10_16_080720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,16 @@ ActiveRecord::Schema.define(version: 2020_10_14_091601) do
     t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "reply_answer"
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_comments_on_answer_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -32,4 +41,5 @@ ActiveRecord::Schema.define(version: 2020_10_14_091601) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "comments", "answers"
 end
