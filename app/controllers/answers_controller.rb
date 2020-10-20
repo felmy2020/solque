@@ -19,7 +19,7 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:content, :question_id,:reply_comment).merge(user_id: current_user.id, question_id: params[:question_id])
+    params.require(:answer).permit(:content, :question_id, :users_id,:reply_comment).merge(user_id: current_user.id, question_id: params[:question_id])
   end
 
 end

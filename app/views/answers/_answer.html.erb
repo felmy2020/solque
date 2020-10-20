@@ -1,4 +1,5 @@
 <p>
+  <%= answer.user.name %>
   <%= answer.content %>
   <%= link_to 'Delete', [answer.question, answer],
               method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
