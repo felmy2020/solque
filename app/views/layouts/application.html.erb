@@ -11,6 +11,8 @@
 
   <body>
     <%= link_to '一覧に戻る', questions_path, class:"btn btn-primary" %>
+    <%= render 'search_form' %>
+
     <% if user_signed_in? %>
       <%= link_to '新規登録' ,new_question_path, class:"btn btn-primary" %>
       あなたの名前:<%= current_user.name %>
