@@ -3,6 +3,13 @@
 <%= link_to '編集', edit_question_path(@question) ,class:"btn btn-success" %>
 <%= link_to '削除', @question, method: :delete, data: { confirm: t('Are_you_sure?') } ,class:"btn btn-danger"%>
 
+<% unless @question.user_id == current_user.id %>
+  <% if @bookmark.present? %>
+    <%= link_to 'お気に入り解除する', bookmark_path(id: @bookmark.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'お気に入りする', bookmarks_path(question_id: @question.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
 <br><br>
 
 <table class="table">

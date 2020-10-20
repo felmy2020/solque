@@ -13,6 +13,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @bookmark = current_user.bookmarks.find_by(question_id: @question.id)
   end
 
   def new

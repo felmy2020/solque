@@ -1,6 +1,7 @@
 class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
-  has_many :bookmark, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_users, through: :bookmarks, source: :user
   belongs_to :user, dependent: :destroy
 
   # has_many :labels, through: :labelings, source: :label
