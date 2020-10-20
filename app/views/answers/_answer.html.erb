@@ -2,5 +2,28 @@
   <%= answer.user.name %>
   <%= answer.content %>
   <%= link_to 'Delete', [answer.question, answer],
-              method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
+  method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
 </p>
+
+<% unless answer.comments.count.zero? %>
+  <% answer.comments.each do |comment| %>
+  <p>
+    <%= comment.user.name %>
+
+    <%= comment.content %>
+    <%# <%= link_to question.title ,question_path(question)%> %>
+    <%# <%= link_to '編集', edit_question_path(question), class:"btn btn-success" %> %>
+    <%= link_to '削除', comment, method: :delete, data: { confirm: t('Are_you_sure?')  } ,class:"btn btn-danger"%>
+  </p>
+  <% end %>
+<% end %>
+
+<%= form_with(model: Comment.new) do |f| %>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+    <%= f.hidden_field :user_id, :value => current_user.id  %>
+    <%= f.hidden_field :answer_id, :value => answer.id  %>
+  </div>
+  <%= f.submit %>
+<% end %>
