@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'questions#index'
   get 'search', to: 'questions#search'
+  patch 'bestanswer', to: 'questions#bestanswer'
   resources :questions do
     resources :answers, only: [:create, :destroy]
   end

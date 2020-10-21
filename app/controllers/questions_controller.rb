@@ -45,6 +45,12 @@ class QuestionsController < ApplicationController
     redirect_to questions_path, notice:"タスクを削除しました！"
   end
 
+  def bestanswer
+    @question = Question.find(question_params[:id])
+    @question.update(question_params)
+    redirect_to @question, notice: 'ベストアンサーが選べられました'
+  end
+
   private
 
   def set_question
@@ -52,7 +58,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :content, :status, :user_id)
+    params.require(:question).permit(:title, :content, :user_id, :best_answer_id, :id)
   end
 
   # def search_params

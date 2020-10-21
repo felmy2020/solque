@@ -3,11 +3,18 @@
   <%= answer.content %>
   <%= link_to 'Delete', [answer.question, answer],
   method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
+
+  <%= form_with(model: @question, url:bestanswer_path) do |form| %>
+    <%= form.hidden_field :best_answer_id, value: answer.id %>
+    <%= form.hidden_field :id, :value => @question.id  %>
+
+    <%= form.submit 'BA'%>
+  <% end %>
 </p>
 
 <% unless answer.comments.count.zero? %>
   <% answer.comments.each do |comment| %>
-  
+
   <p>
     <%= comment.user.name %>
 
