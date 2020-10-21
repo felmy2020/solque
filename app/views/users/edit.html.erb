@@ -1,0 +1,21 @@
+<h1>プロフィール編集</h1>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <p><%= f.label :name %></p>
+  <p><%= f.text_field :name %></p>
+  <p><%= f.label :icon %></p>
+  <p><%= image_tag(@user.icon.url) if @user.icon && @user.icon.url %></p>
+  <p><%= f.file_field :icon %></p>
+  <p><%= f.hidden_field :icon_cache %></p>
+  <p><%= f.submit "Create my account" %></p>
+<% end %>

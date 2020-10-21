@@ -7,12 +7,11 @@
 
 <% unless answer.comments.count.zero? %>
   <% answer.comments.each do |comment| %>
+  
   <p>
     <%= comment.user.name %>
 
     <%= comment.content %>
-    <%# <%= link_to question.title ,question_path(question)%> %>
-    <%# <%= link_to '編集', edit_question_path(question), class:"btn btn-success" %> %>
     <%= link_to '削除', comment, method: :delete, data: { confirm: t('Are_you_sure?')  } ,class:"btn btn-danger"%>
   </p>
   <% end %>
