@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_10_21_063040) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.integer "reply_answer"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
@@ -46,7 +45,6 @@ ActiveRecord::Schema.define(version: 2020_10_21_063040) do
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.boolean "status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -58,7 +56,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_063040) do
     t.string "name", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.text "icon", null: false
+    t.text "icon"
     t.text "profile"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

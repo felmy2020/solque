@@ -1,7 +1,13 @@
 
   <h1><%= @user.name %>のページ</h1>
   <p>メールアドレス: <%= @user.email %></p>
-  <p><%= image_tag @user.icon.url %></p>
+
+  <% if @user.icon.file.present? %>
+   <p><%= image_tag @user.icon.url,:size => "50x50" %></p>
+  <% else %>
+   <p><%= image_tag("default.png", :size => "50x50") %></p>
+  <% end %>
+
 <% if current_user.id == @user.id %>
   <td><%= link_to 'Edit', edit_user_path(@user.id) %> </td>
 <% end %>
