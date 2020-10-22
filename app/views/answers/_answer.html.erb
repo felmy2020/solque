@@ -2,41 +2,47 @@
   <%= answer.user.name %>
   <%= answer.content %>
   <% if user_signed_in? %>
+    <% if current_user.id == answer.user_id %>
+      <%= link_to 'Delete', [answer.question, answer],method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
+    <% end %>
 
-  <%= link_to 'Delete', [answer.question, answer],
-  method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
-    <%= form_with(model: @question, url:bestanswer_path) do |form| %>
-      <%= form.hidden_field :best_answer_id, value: answer.id %>
-      <%= form.hidden_field :id, :value => @question.id  %>
-      <%= form.submit 'BA'%>
+    <% unless answer.question.best_answer_id.present? %>
+      <% if answer.question.user_id == current_user.id %>
+        <%= form_with(model: @question, url:bestanswer_path) do |form| %>
+          <%= form.hidden_field :best_answer_id, value: answer.id %>
+          <%= form.hidden_field :id, :value => @question.id  %>
+          <%= form.submit 'BA'%>
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
-
 </p>
 
 <% unless answer.comments.count.zero? %>
-  <% answer.comments.each do |comment| %>
+<% answer.comments.each do |comment| %>
+<p>
+  <%= comment.user.name %>
 
-  <p>
-    <%= comment.user.name %>
+  <%= comment.content %>
+  <% if user_signed_in? %>
+  <% if current_user.id == comment.user_id %>
 
-    <%= comment.content %>
-    <% if user_signed_in? %>
-    <%= link_to '削除', comment, method: :delete, data: { confirm: t('Are_you_sure?')  } ,class:"btn btn-danger"%>
-    <% end %>
-
-  </p>
+  <%= link_to '削除', comment, method: :delete, data: { confirm: t('Are_you_sure?')  } ,class:"btn btn-danger"%>
   <% end %>
+  <% end %>
+
+</p>
+<% end %>
 <% end %>
 <% if user_signed_in? %>
 
-  <%= form_with(model: Comment.new) do |f| %>
-    <div class="field">
-      <%= f.label :content %>
-      <%= f.text_field :content %>
-      <%= f.hidden_field :user_id, :value => current_user.id  %>
-      <%= f.hidden_field :answer_id, :value => answer.id  %>
-    </div>
-    <%= f.submit %>
-  <% end %>
-  <% end %>
+<%= form_with(model: Comment.new) do |f| %>
+<div class="field">
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+  <%= f.hidden_field :user_id, :value => current_user.id  %>
+  <%= f.hidden_field :answer_id, :value => answer.id  %>
+</div>
+<%= f.submit %>
+<% end %>
+<% end %>

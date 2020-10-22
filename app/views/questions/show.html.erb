@@ -1,9 +1,11 @@
 <h1><%= t('views.question.show')%></h1>
 
 <% if user_signed_in? %>
+<% if current_user.id == @question.user_id %>
 
 <%= link_to '編集', edit_question_path(@question) ,class:"btn btn-success" %>
 <%= link_to '削除', @question, method: :delete, data: { confirm: t('Are_you_sure?') } ,class:"btn btn-danger"%>
+<% end %>
 
   <% unless @question.user_id == current_user.id %>
     <% if @bookmark.present? %>
