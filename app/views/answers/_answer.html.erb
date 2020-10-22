@@ -1,15 +1,17 @@
 <p>
   <%= answer.user.name %>
   <%= answer.content %>
+  <% if user_signed_in? %>
+
   <%= link_to 'Delete', [answer.question, answer],
   method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
-
-  <%= form_with(model: @question, url:bestanswer_path) do |form| %>
-    <%= form.hidden_field :best_answer_id, value: answer.id %>
-    <%= form.hidden_field :id, :value => @question.id  %>
-
-    <%= form.submit 'BA'%>
+    <%= form_with(model: @question, url:bestanswer_path) do |form| %>
+      <%= form.hidden_field :best_answer_id, value: answer.id %>
+      <%= form.hidden_field :id, :value => @question.id  %>
+      <%= form.submit 'BA'%>
+    <% end %>
   <% end %>
+
 </p>
 
 <% unless answer.comments.count.zero? %>
@@ -19,17 +21,22 @@
     <%= comment.user.name %>
 
     <%= comment.content %>
+    <% if user_signed_in? %>
     <%= link_to '削除', comment, method: :delete, data: { confirm: t('Are_you_sure?')  } ,class:"btn btn-danger"%>
+    <% end %>
+
   </p>
   <% end %>
 <% end %>
+<% if user_signed_in? %>
 
-<%= form_with(model: Comment.new) do |f| %>
-  <div class="field">
-    <%= f.label :content %>
-    <%= f.text_field :content %>
-    <%= f.hidden_field :user_id, :value => current_user.id  %>
-    <%= f.hidden_field :answer_id, :value => answer.id  %>
-  </div>
-  <%= f.submit %>
-<% end %>
+  <%= form_with(model: Comment.new) do |f| %>
+    <div class="field">
+      <%= f.label :content %>
+      <%= f.text_field :content %>
+      <%= f.hidden_field :user_id, :value => current_user.id  %>
+      <%= f.hidden_field :answer_id, :value => answer.id  %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+  <% end %>

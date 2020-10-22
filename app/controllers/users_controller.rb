@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user
+  before_action :authenticate_user!, only: [:show, :edit, :update]
+
   def show
-    # @favorites = current_user.favorites
+    @questions = @user.questions
+    @answers = @user.answer_questions
+    @bookmarks = @user.bookmark_questions
   end
   def edit
   end

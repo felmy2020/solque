@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :bestanswer]
 
   def search
     params[:q]['content_cont_all'] = params[:q]['content_cont_all'].split(/[\p{blank}\s]+/)
@@ -13,7 +14,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @bookmark = current_user.bookmarks.find_by(question_id: @question.id)
+    if user_signed_in?
+      @bookmark = current_user.bookmarks.find_by(question_id: @question.id)
+    end
   end
 
   def new
