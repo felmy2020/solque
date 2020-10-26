@@ -1,4 +1,4 @@
-<h1><%= t('views.question.show')%></h1>
+<h1><%= @question.title %></h1>
 
 <% if user_signed_in? %>
 <% if current_user.id == @question.user_id %>
@@ -17,32 +17,20 @@
 <% end %>
 <br><br>
 
-<table class="table">
-  <tbody>
-      <tr>
-        <td>タスク名</td>
-        <td><%= @question.title %></td>
-      </tr>
-      <tr>
-        <td>内容</td>
-        <td><%= markdown(@question.content).html_safe %></td>
-      </tr>
-  </tbody>
-</table>
 
-<h1><%= t('views.answer.index')%></h1>
+<div><%= markdown(@question.content).html_safe %></div>
+<br>
+
+
 <% unless @question.answers.count.zero? %>
-
-  <p>
-    <strong>Answer:</strong>
-    <%= @question.answers.count.to_s + "answers" %>
-  </p>
-
-  <p>
-    <%= render @question.answers %>
-  </p>
+  <h1><%= t('views.answer.index')%>（回答：<%= @question.answers.count.to_s + "件" %>）</h1>
+  <%= render @question.answers %>
+<% else %>
+  <h1><%= t('views.answer.index')%>（回答：<%= @question.answers.count.to_s + "件" %>）</h1>
+  <div>回答はありません</div>
 <% end %>
 
+<br>
 <h1><%= t('views.answer.new')%></h1>
 <p>
   <%= render 'answers/form', question: @question %>

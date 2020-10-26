@@ -48,10 +48,16 @@ GEM
       io-like (~> 0.3.0)
     arel (9.0.0)
     ast (2.4.1)
+    autoprefixer-rails (9.8.6.3)
+      execjs
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
+    bootstrap (4.1.3)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (>= 1.12.9, < 2)
+      sass (>= 3.5.2)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.33.0)
@@ -89,6 +95,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.9.2)
+      devise (>= 4.7.1)
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.13.1)
@@ -102,6 +110,10 @@ GEM
     io-like (0.3.1)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
+    jquery-rails (4.4.0)
+      rails-dom-testing (>= 1, < 3)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -142,9 +154,12 @@ GEM
     pg (1.2.3)
     polyamorous (2.3.2)
       activerecord (>= 5.2.1)
+    popper_js (1.16.0)
     public_suffix (4.0.6)
     puma (3.12.6)
     rack (2.2.3)
+    rack-proxy (0.6.5)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.4.4)
@@ -257,6 +272,10 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webpacker (4.3.0)
+      activesupport (>= 4.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 4.2)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -268,6 +287,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
+  bootstrap (~> 4.1.1)
   byebug
   capybara (>= 2.15)
   carrierwave
@@ -275,7 +295,9 @@ DEPENDENCIES
   coderay
   coffee-rails (~> 4.2)
   devise
+  devise-i18n
   jbuilder (~> 2.5)
+  jquery-rails
   kaminari
   listen (>= 3.0.5, < 3.2)
   mini_magick
@@ -295,6 +317,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  webpacker (~> 4.0)
 
 RUBY VERSION
    ruby 2.6.5p114
