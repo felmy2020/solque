@@ -5,12 +5,17 @@ class QuestionsController < ApplicationController
   def search
     params[:q]['content_cont_all'] = params[:q]['content_cont_all'].split(/[\p{blank}\s]+/)
     @q = Question.ransack(params[:q])
-    @questions = @q.result(distinct: true)
+    @questions = @q.result(distinct: true).order(id: "DESC") #.page(params[:page]).per(10)
+    @questions_open = @questions.where(best_answer_id:nil).order(id: "DESC") #.page(params[:page]).per(10)
+    @questions_close = @questions.where.not(best_answer_id:nil).order(id: "DESC") #.page(params[:page]).per(10)
+    render :index
   end
 
   def index
-    @q = Question.ransack(params[:q])
-    @questions = @q.result(distinct: true)
+
+    @questions = Question.all.order(id: "DESC") #.page(params[:page]).per(10)
+    @questions_open = @questions.where(best_answer_id:nil).order(id: "DESC") #.page(params[:page]).per(10)
+    @questions_close = @questions.where.not(best_answer_id:nil).order(id: "DESC") #.page(params[:page]).per(10)
   end
 
   def show
@@ -29,7 +34,7 @@ class QuestionsController < ApplicationController
   def create
     @question = current_user.questions.build(question_params)
     if @question.save
-      redirect_to @question, notice: 'タスクを登録しました'
+      redirect_to @question, notice: '質問を登録しました'
     else
       render :new
     end
@@ -37,7 +42,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to @question, notice: 'タスクを編集しました。'
+      redirect_to @question, notice: '質問を編集しました。'
     else
       render :edit
     end
@@ -45,7 +50,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to questions_path, notice:"タスクを削除しました！"
+    redirect_to questions_path, notice:"質問を削除しました！"
   end
 
   def bestanswer

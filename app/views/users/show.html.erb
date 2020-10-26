@@ -16,27 +16,76 @@
 
 
 
-<h1>質問</h1>
+<ul class="nav nav-tabs">
+  <li class="nav-item"><a href="#tab1" class="nav-link active">質問投稿</a></li>
+  <li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">回答投稿</a></li>
+  <li class="nav-item"><a href="#tab3" class="nav-link" data-toggle="tab">ブックマーク</a></li>
+</ul>
 
-<% @questions.each do |question| %>
-  <p>
-  <%= link_to question.title ,question_path(question)%>
-  <p>
-<% end %>
+<div class="tab-content">
+  <div id="tab1" class="tab-pane active">
+    <table class="table table-hover">
+      <% @questions.each do |question| %>
+      <tbody>
+      <tr>
+      <% if question.best_answer_id.present? %>
+      <td  class="td-category"><div class="btn btn-info">質問<br>解決済<div></td>
+      <% else %>
+        <td  class="td-category"><div class="btn btn-danger">回答<br>受付中<div></td>
+      <% end %>
 
-<h1>回答</h1>
+      <td   class="td-title"><%= link_to question.title ,question_path(question) ,class:"article-title"%><br><br>
+        <%= link_to question.user.name ,user_path(question.user_id) %>　が<%= question.created_at.strftime("%Y/%m/%d")  %>に投稿<br>
+        回答：<%= question.answers.count %> 件・ブックマーク：<%= question.bookmarks.count %> 件
+      </td>
 
-<% @answers.each do |answer| %>
-  <p>
+    <% end %>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+  <div id="tab2" class="tab-pane">
+    <table class="table table-hover">
+      <% @answers.each do |question| %>
+      <tbody>
+      <tr>
+      <% if question.best_answer_id.present? %>
+      <td  class="td-category"><div class="btn btn-info">質問<br>解決済<div></td>
+      <% else %>
+        <td  class="td-category"><div class="btn btn-danger">回答<br>受付中<div></td>
+      <% end %>
 
-  <%= link_to answer.title ,question_path(answer.id)%>
-  <p>
-<% end %>
+      <td   class="td-title"><%= link_to question.title ,question_path(question) ,class:"article-title"%><br><br>
+        <%= link_to question.user.name ,user_path(question.user_id) %>　が<%= question.created_at.strftime("%Y/%m/%d")  %>に投稿<br>
+        回答：<%= question.answers.count %> 件・ブックマーク：<%= question.bookmarks.count %> 件
+      </td>
 
-<h1>ブックマーク</h1>
+    <% end %>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+  <div id="tab3" class="tab-pane">
+    <div id="tab2" class="tab-pane">
+      <table class="table table-hover">
+        <% @bookmarks.each do |question| %>
+        <tbody>
+        <tr>
+        <% if question.best_answer_id.present? %>
+        <td  class="td-category"><div class="btn btn-info">質問<br>解決済<div></td>
+        <% else %>
+          <td  class="td-category"><div class="btn btn-danger">回答<br>受付中<div></td>
+        <% end %>
 
-<% @bookmarks.each do |bookmark| %>
-  <p>
-  <%= link_to bookmark.title ,question_path(bookmark.id)%>
-  <p>
-<% end %>
+        <td   class="td-title"><%= link_to question.title ,question_path(question) ,class:"article-title"%><br><br>
+          <%= link_to question.user.name ,user_path(question.user_id) %>　が<%= question.created_at.strftime("%Y/%m/%d")  %>に投稿<br>
+          回答：<%= question.answers.count %> 件・ブックマーク：<%= question.bookmarks.count %> 件
+        </td>
+
+      <% end %>
+      </tr>
+      </tbody>
+      </table>
+  </div>
+
+</div>

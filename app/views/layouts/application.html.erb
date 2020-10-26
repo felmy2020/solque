@@ -23,10 +23,15 @@
 
         <div class="collapse navbar-collapse" id="navbar-sample">
 
+
+
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
+              <% if controller.controller_name == "questions" %>
 
-              <%# <%= render 'search_form' %> %>
+              <%= render 'search_form' %>
+              <% end %>
+
             </li>
           </ul>
 
