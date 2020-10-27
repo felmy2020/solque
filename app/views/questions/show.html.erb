@@ -1,37 +1,44 @@
-<h1><%= @question.title %></h1>
 
 <% if user_signed_in? %>
 <% if current_user.id == @question.user_id %>
-
 <%= link_to '編集', edit_question_path(@question) ,class:"btn btn-success" %>
 <%= link_to '削除', @question, method: :delete, data: { confirm: t('Are_you_sure?') } ,class:"btn btn-danger"%>
 <% end %>
 
-  <% unless @question.user_id == current_user.id %>
-    <% if @bookmark.present? %>
-      <%= link_to 'お気に入り解除する', bookmark_path(id: @bookmark.id), method: :delete, class: 'btn btn-danger' %>
-    <% else %>
-      <%= link_to 'お気に入りする', bookmarks_path(question_id: @question.id), method: :post, class: 'btn btn-primary' %>
-    <% end %>
-  <% end %>
+<% unless @question.user_id == current_user.id %>
+<% if @bookmark.present? %>
+<%= link_to 'お気に入り解除する', bookmark_path(id: @bookmark.id), method: :delete, class: 'btn btn-danger' %>
+<% else %>
+<%= link_to 'お気に入りする', bookmarks_path(question_id: @question.id), method: :post, class: 'btn btn-primary' %>
+<% end %>
+<% end %>
 <% end %>
 <br><br>
 
 
-<div><%= markdown(@question.content).html_safe %></div>
+<div class="card">
+  <h3 class="card-header question-title"><%= @question.title %></h3>
+
+  <div class="card-body">
+    <p class="card-text"><div><%= markdown(@question.content).html_safe %></div></p>
+  </div>
+</div>
+
+
+<br>
 <br>
 
-
 <% unless @question.answers.count.zero? %>
-  <h1><%= t('views.answer.index')%>（回答：<%= @question.answers.count.to_s + "件" %>）</h1>
-  <%= render @question.answers %>
+<h1 class="question-answer">回答一覧（回答：<%= @question.answers.count.to_s + "件" %>）</h1>
+<%= render @question.answers %>
 <% else %>
-  <h1><%= t('views.answer.index')%>（回答：<%= @question.answers.count.to_s + "件" %>）</h1>
-  <div>回答はありません</div>
+<h1 class="question-answer">回答一覧（回答：<%= @question.answers.count.to_s + "件" %>）</h1>
+<div>回答はありません</div>
 <% end %>
 
 <br>
-<h1><%= t('views.answer.new')%></h1>
+<br>
+<h1 class="question-answer">回答を投稿</h1>
 <p>
   <%= render 'answers/form', question: @question %>
 </p>

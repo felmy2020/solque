@@ -46,11 +46,20 @@
    width: 200px;
  }
 
- .imagePreview {
-     width: 100%;
-     height: 180px;
-     background-position: center center;
-     background-size: cover;
-     -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
-     display: inline-block;
+
+
+ .question-title {
+   color:#ffffff;
+   position: relative;
+   padding: 0.6em;
+   background: #1e4070;
  }
+
+
+ .question-answer {
+  padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+  color: #494949;/*文字色*/
+  background: #f4f4f4;/*背景色*/
+  border-left: solid 5px #102c7f;/*左線*/
+  border-bottom: solid 3px #cce4ff;/*下線*/
+}
