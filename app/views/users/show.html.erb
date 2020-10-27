@@ -16,8 +16,7 @@
       <% if current_user.id == @user.id %>
       <p><br>
         <%= link_to 'プロフィール編集', edit_user_path(@user.id) , class: 'btn btn-primary'%>
-        <%= link_to 'パスワード変更', edit_user_registration_path , class: 'btn btn-success'%>
-      <% end %>
+        <% end %>
       </p>
 
       <table class="table table-bordered">
