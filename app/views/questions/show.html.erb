@@ -20,7 +20,7 @@
   <h3 class="card-header question-title"><%= @question.title %></h3>
 
   <div class="card-body">
-    <p class="card-text"><div><%= markdown(@question.content).html_safe %></div></p>
+    <p class="card-text"><%= markdown(@question.content).html_safe %></p>
   </div>
 </div>
 
@@ -29,16 +29,21 @@
 <br>
 
 <% unless @question.answers.count.zero? %>
-<h1 class="question-answer">回答一覧（回答：<%= @question.answers.count.to_s + "件" %>）</h1>
+<h1 class="question-answer">■回答一覧（回答：<%= @question.answers.count.to_s + "件" %>）</h1>
 <%= render @question.answers %>
 <% else %>
-<h1 class="question-answer">回答一覧（回答：<%= @question.answers.count.to_s + "件" %>）</h1>
+<h1 class="question-answer">■回答一覧（回答：<%= @question.answers.count.to_s + "件" %>）</h1>
 <div>回答はありません</div>
 <% end %>
 
 <br>
 <br>
-<h1 class="question-answer">回答を投稿</h1>
+<h1 class="question-answer">■回答を投稿</h1>
+<% if user_signed_in? %>
 <p>
   <%= render 'answers/form', question: @question %>
 </p>
+  <% else %>
+  <div>回答するにはログインが必要です。</div>
+
+<% end %>

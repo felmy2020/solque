@@ -17,8 +17,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails-i18n', '~> 5.1'
 gem 'slim-rails'
 
-gem 'redcarpet', '~> 2.3.0'
-gem 'coderay'
+gem 'redcarpet', '~> 2.3.0'  # マークダウン形式での表示
+gem 'coderay'                # シンタックスハイライト対応
 
 gem 'ransack'
 
