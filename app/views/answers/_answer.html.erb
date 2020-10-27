@@ -4,7 +4,6 @@
       <% if user_signed_in? %>
         <% if current_user.id == answer.user_id %>
           <%= link_to '削除', [answer.question, answer],method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
-          <%# <%= link_to '編集', [answer.question, answer],method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %> %>
         <% end %>
         <% unless answer.question.best_answer_id.present? %>
           <% if answer.question.user_id == current_user.id %>
@@ -24,29 +23,31 @@
       <p class="card-text">
         <%= markdown(answer.content).html_safe%>
 
+<br>
         <% unless answer.comments.count.zero? %>
-          <% answer.comments.each do |comment| %>
-            <%= comment.user.name %>
-            <%= comment.content %>
-            <% if user_signed_in? %>
-              <% if current_user.id == comment.user_id %>
-                <%= link_to 'コメント削除', comment, method: :delete, data: { confirm: t('Are_you_sure?')  } ,class:"btn btn-danger"%>
-                <%# <%= link_to 'コメント編集', comment, method: :delete, data: { confirm: t('Are_you_sure?')  } ,class:"btn btn-danger"%> %>
-              <% end %>
-            <% end %>
 
-          </p>
-          <% end %>
           <% end %>
           <% if user_signed_in? %>
             <%= form_with(model: Comment.new) do |f| %>
             <div class="field">
-              <%= f.label :content %>
-              <%= f.text_field :content %>
+              <%= f.text_field :content , placeholder: "コメントを投稿しよう...", class: "form-control"%>
               <%= f.hidden_field :user_id, :value => current_user.id  %>
               <%= f.hidden_field :answer_id, :value => answer.id  %>
             </div>
             <%= f.submit %>
+          <% end %>
+
+
+          <% answer.comments.each do |comment| %>
+            <%= comment.user.name %>
+            <p>
+            <%= comment.content %>
+            <% if user_signed_in? %>
+              <% if current_user.id == comment.user_id %>
+                <%= link_to 'コメント削除', comment, method: :delete, data: { confirm: t('Are_you_sure?')  } %>
+              <% end %>
+            <% end %>
+</p>
           <% end %>
         <% end %>
 
