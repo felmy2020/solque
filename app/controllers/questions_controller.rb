@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :bestanswer]
 
   def search
-    params[:q]['content_cont_all'] = params[:q]['content_cont_all'].split(/[\p{blank}\s]+/)
+    params[:q]['title_or_content_cont_all'] = params[:q]['title_or_content_cont_all'].split(/[\p{blank}\s]+/)
     @q = Question.ransack(params[:q])
     @questions = @q.result(distinct: true).order(id: "DESC") #.page(params[:page]).per(10)
     @questions_open = @questions.where(best_answer_id:nil).order(id: "DESC") #.page(params[:page]).per(10)
