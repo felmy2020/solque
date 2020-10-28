@@ -1,7 +1,6 @@
 <br><br>
 
 <%= form_with(model: @question, local: true) do |form| %>
-
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> バリデーションエラーが発生しています</h2>

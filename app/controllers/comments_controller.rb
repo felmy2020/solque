@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
-    # binding.irb
     respond_to do |format|
       flash.now[:notice] = 'コメントの編集中'
       format.js { render :edit }
@@ -24,15 +23,15 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     @answer = Answer.find(@comment.answer_id)
-      respond_to do |format|
-        if @comment.update(comment_params)
-          flash.now[:notice] = 'コメントが編集されました'
-          format.js { render :index }
-        else
-          flash.now[:notice] = 'コメントの編集に失敗しました'
-          format.js { render :edit_error }
-        end
+    respond_to do |format|
+      if @comment.update(comment_params)
+        flash.now[:notice] = 'コメントが編集されました'
+        format.js { render :index }
+      else
+        flash.now[:notice] = 'コメントの編集に失敗しました'
+        format.js { render :edit_error }
       end
+    end
   end
 
   def destroy

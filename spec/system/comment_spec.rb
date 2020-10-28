@@ -16,7 +16,7 @@ RSpec.describe 'コメント管理機能', type: :system do
       it '作成したコメントが表示される' do
         visit question_path(question.id)
         fill_in :comment_content, with: 'コメント２'
-        click_on "登録する"
+        click_on "コメントする"
         expect(page).to have_content 'コメント２'
       end
     end
