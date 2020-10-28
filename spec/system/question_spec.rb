@@ -53,7 +53,7 @@ RSpec.describe '質問管理機能', type: :system do
     end
 
     context 'タイトルであいまい検索をした場合' do
-      it "検索キーワードを含む質問で絞り込まれる" do
+      it "検索キーワードを含む質問のタイトルで絞り込まれる" do
         fill_in :q_title_or_content_cont_all, with: '質問１'
         click_on '検索'
         expect(page).to have_content '質問１'

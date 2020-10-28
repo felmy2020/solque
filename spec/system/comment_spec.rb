@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe '質問管理機能', type: :system do
+RSpec.describe 'コメント管理機能', type: :system do
   let!(:user) { FactoryBot.create(:user) }
   let!(:question) { FactoryBot.create(:question, user: user) }
   let!(:answer) { FactoryBot.create(:answer, user: user, question: question) }
@@ -12,8 +12,8 @@ RSpec.describe '質問管理機能', type: :system do
       fill_in 'user_password', with: 'test01'
       click_button 'ログイン'
     end
-    context '質問に対して回答を投稿した場合' do
-      it '作成した質問が表示される' do
+    context 'コメントに対して回答を投稿した場合' do
+      it '作成したコメントが表示される' do
         visit question_path(question.id)
         fill_in :comment_content, with: 'コメント２'
         click_on "登録する"

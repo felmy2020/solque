@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe '質問管理機能', type: :system do
+RSpec.describe '回答管理機能', type: :system do
   let!(:user) { FactoryBot.create(:user) }
   let!(:question) { FactoryBot.create(:question, user: user) }
   let!(:answer) { FactoryBot.create(:answer, user: user, question: question) }
@@ -12,7 +12,7 @@ RSpec.describe '質問管理機能', type: :system do
       click_button 'ログイン'
     end
     context '質問に対して回答を投稿した場合' do
-      it '作成した質問が表示される' do
+      it '作成した回答が表示される' do
         visit question_path(question.id)
         fill_in :answer_content, with: '回答２'
         click_on "投稿"
@@ -30,7 +30,7 @@ RSpec.describe '質問管理機能', type: :system do
       click_button 'ログイン'
     end
 
-    context '任意の質問詳細画面に遷移した場合' do
+    context '質問の詳細画面に遷移した場合' do
       it '作成済みの回答が表示される' do
         visit question_path(question.id)
         expect(page).to have_content '回答１'
