@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     resources :answers, only: [:create, :destroy]
   end
   resources :bookmarks, only: [:create, :destroy]
-  resources :comments, only: [:create, :destroy]
+  resources :comments, only: [:create, :edit, :update, :destroy]
   resources :users, only: [:show, :edit, :update]
 end

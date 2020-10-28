@@ -21,6 +21,7 @@ class QuestionsController < ApplicationController
   def show
     if user_signed_in?
       @bookmark = current_user.bookmarks.find_by(question_id: @question.id)
+      @comment = Comment.new
     end
   end
 

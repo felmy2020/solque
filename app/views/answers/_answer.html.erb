@@ -1,58 +1,32 @@
 <p>
   <% if user_signed_in? %>
-  <% if current_user.id == answer.user_id %>
-  <%= link_to '削除', [answer.question, answer],method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
-  <% end %>
-  <% unless answer.question.best_answer_id.present? %>
-  <% if answer.question.user_id == current_user.id %>
-  <%= form_with(model: @question, url:bestanswer_path) do |form| %>
-  <%= form.hidden_field :best_answer_id, value: answer.id %>
-  <%= form.hidden_field :id, :value => @question.id  %>
-  <%= form.submit 'ベストアンサー', class: "btn btn-info"%>
-  <% end %>
-  <% end %>
-  <% end %>
+    <% if current_user.id == answer.user_id %>
+      <%= link_to '削除', [answer.question, answer],method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除しますか' } %>
+    <% end %>
+    <% unless answer.question.best_answer_id.present? %>
+      <% if answer.question.user_id == current_user.id %>
+      <%= form_with(model: @question, url:bestanswer_path) do |form| %>
+        <%= form.hidden_field :best_answer_id, value: answer.id %>
+        <%= form.hidden_field :id, :value => @question.id  %>
+        <%= form.submit 'ベストアンサー', class: "btn btn-info"%>
+        <% end %>
+      <% end %>
+    <% end %>
   <% end %>
   <div class="card">
     <div class="card-header"><%= answer.user.name %>の回答
 
     </div>
 
-
-
     <div class="card-body">
       <p class="card-text">
-
-
         <%= markdown(answer.content).html_safe%>
-
         <br>
-        <% unless answer.comments.count.zero? %>
+          <%= render partial: 'comments/form', locals: { comment: @comment, answer: answer } %>
 
-        <% end %>
-        <% if user_signed_in? %>
-        <%= form_with(model: Comment.new) do |f| %>
-        <div class="field">
-          <%= f.text_field :content , placeholder: "コメントを投稿しよう...", class: "form-control"%>
-          <%= f.hidden_field :user_id, :value => current_user.id  %>
-          <%= f.hidden_field :answer_id, :value => answer.id  %>
+        <div id="comments_area">
+          <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
+          <%= render partial: 'comments/index', locals: { answer: answer } %>
         </div>
-        <%= f.submit %>
-        <% end %>
-
-
-        <% answer.comments.each do |comment| %>
-        <%= comment.user.name %>
-        <p>
-          <%= comment.content %>
-          <% if user_signed_in? %>
-          <% if current_user.id == comment.user_id %>
-          <%= link_to 'コメント削除', comment, method: :delete, data: { confirm: t('Are_you_sure?')  } %>
-          <% end %>
-          <% end %>
-        </p>
-        <% end %>
-        <% end %>
-
       </div>
     </div>
