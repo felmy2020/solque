@@ -70,8 +70,5 @@ class QuestionsController < ApplicationController
     params.require(:question).permit(:title, :content, :user_id, :best_answer_id, :id)
   end
 
-  # def search_params
-  #   params.require(:q).permit!
-  # end
 
 end

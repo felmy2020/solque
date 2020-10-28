@@ -2,8 +2,12 @@ class AnswersController < ApplicationController
   before_action :set_question, only: [:create, :destroy]
 
   def create
-    @answer = @question.answers.create(answer_params)
-    redirect_to question_path(@question)
+    @answer = @question.answers.new(answer_params)
+    if @answer.save
+      redirect_to question_path(@question), notice: '回答しました'
+    else
+      redirect_to question_path(@question), notice: '回答できませんでした...'
+    end
   end
 
   def destroy

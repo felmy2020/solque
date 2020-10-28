@@ -12,30 +12,22 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 追加gem
 gem 'rails-i18n', '~> 5.1'
 gem 'slim-rails'
-
-gem 'redcarpet', '~> 2.3.0'  # マークダウン形式での表示
-gem 'coderay'                # シンタックスハイライト対応
-
+gem 'redcarpet', '~> 2.3.0'
+gem 'coderay'
 gem 'ransack'
-
 gem 'carrierwave'
 gem 'mini_magick'
-
 gem 'devise'
-
 gem 'rubocop', require: false
-
 gem 'kaminari'
-
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
-
 gem 'webpacker', '~> 4.0'
-
 gem 'devise-i18n'
 
 group :development, :test do
@@ -59,5 +51,3 @@ group :test do
   gem 'capybara'
   gem 'webdrivers'
 end
-
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -1,4 +1,3 @@
-
 <% if @user.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
@@ -9,7 +8,6 @@
   </ul>
 </div>
 <% end %>
-
 
 <br>
 <div class="card mx-autor">
@@ -31,7 +29,7 @@
       <div class="form-group">
         <%= f.file_field :icon %>
         <%= f.hidden_field :icon_cache %>
-          <br>
+        <br>
         <%= image_tag(@user.icon.url,:size => "300x300") if @user.icon && @user.icon.url %>
 
       </div>
