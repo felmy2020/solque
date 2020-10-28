@@ -1,0 +1,23 @@
+
+
+<% answer.comments.each do |comment| %>
+
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <td><%= comment.user.name %></td>
+      <td><%= comment.content %></td>
+      <td>
+        <% if user_signed_in? %>
+          <% if current_user.id == comment.user_id %>
+            <div class="comment-content" id ="this_comment_<%= comment.id %>"></div>
+            <%= link_to "コメント編集", edit_comment_path(comment), remote: true %>
+            <%= link_to 'コメント削除', comment, method: :delete, data: { confirm: '本当に削除しますか'  } %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<% end %>

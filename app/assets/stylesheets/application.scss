@@ -1,0 +1,56 @@
+@import "bootstrap";
+
+
+ .text-center {
+   text-align: center;
+ }
+
+ .pagination {
+   justify-content: center;
+ }
+
+ .pagination>li>a {
+   border: none;
+   color: #696969;
+ }
+
+ .pagination>.active>a {
+   background: #93c9ff;
+   border-radius: 15px;
+ }
+
+ .pagination>li>a:hover {
+   border-radius: 15px;
+ }
+
+ .td-category {
+   width: 10px;
+ }
+
+ .td-title {
+   font-size: 14px;
+ }
+
+ .article-title{
+   font-size: 25px;
+ }
+
+
+
+ .card-center {
+   text-align: center;
+   width: 500px;
+ }
+
+ .td-profile {
+   width: 200px;
+ }
+
+
+
+ .question-title {
+   color:#ffffff;
+   position: relative;
+   padding: 0.6em;
+   background: #1e4070;
+ }

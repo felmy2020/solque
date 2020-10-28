@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      question: 質問
+      answer: 回答
+      comment: コメント
+      bookmark: ブックマーク
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        icon: アイコン画像
+        profile: 自己紹介
+      question:
+        title: タイトル
+        content: 内容
+      answer:
+        content: 内容
+      comment:
+        content: 内容

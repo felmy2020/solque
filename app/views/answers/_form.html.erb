@@ -1,0 +1,9 @@
+
+<% if user_signed_in? %>
+  <%= form_with model: ([@question, @question.answers.build]) do |f| %>
+  <div class="form-group">
+    <%= f.text_area :content ,:size => "20x10",class:"form-control"%>
+  </div>
+  <%= f.submit "投稿",class:"btn btn-success"%>
+  <% end %>
+<% end %>
